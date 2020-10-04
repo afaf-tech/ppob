@@ -15,7 +15,8 @@ class CreateTableData extends Migration
     {
         Schema::create('table_nominal_data', function (Blueprint $table) {
             $table->id();
-            $table->integer('nominal');
+            $table->string('nama_paket');
+            $table->integer('id_provider');
             $table->integer('fixed_price');
             $table->timestamps();
         });

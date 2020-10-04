@@ -15,8 +15,10 @@ class CreateTablePln extends Migration
     {
         Schema::create('table_pln', function (Blueprint $table) {
             $table->id();
-            $table->integer('no_meteran');
-            $table->string('id_informasi')->nullable();
+            $table->integer('id_customer');
+            $table->integer('id_paket_pln');
+            $table->integer('price');
+            $table->string('informasi')->nullable();
             $table->timestamps();
         });
     }

@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\LogAdmin;
 use Auth;
 use DB;
-use App\Province;
-use App\Model\RoleModel;
-use App\Model\LogAdmin;
-use App\Model\CartModel;
-use App\City;
-use Carbon\Carbon;
 
 
 class DashboardController extends Controller

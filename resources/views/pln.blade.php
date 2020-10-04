@@ -3,18 +3,18 @@
     <link rel="stylesheet" type="text/css" href="{{URL::asset('assets')}}/css/select2.min.css">
     <style>
         #badge{
-            background-color: rgb(218, 243, 103)
+            background-color: rgb(243, 215, 103)
         }
     </style>
 @endsection
-@section('title', 'Pulsa')
+@section('title', 'PLN')
 @section('content')
 
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center border-0 mt-2">
-                    <h5 class="text-dark font-weight-bold display-4">Isi Ulang Pulsa</h5>
+                    <h5 class="text-dark font-weight-bold display-4">Beli PLN prabayar</h5>
                 </div>
                 <form class="form" id="form_purchase">@csrf
                     <div class="card-body">
@@ -22,40 +22,46 @@
                     <div class="form-group row m-0">
                     <div class="col-lg-10">
                         <div class="row">
-                            <div class="col-md-6">
+
+                            <div class="col-md-9">
                                 <div class="form-group">
-                                    <label for="no_telp">Nomor Telepon</label>
-                                    <input type="tel" id="phone_number" class="form-control required" name="phone_number" pattern="[0-9]{11,14}" placeholder="08..." required>
+                                    <label class="control-label" for="provider">No Meteran / Id Pelanggan</label>
+                                    <select class="select2 form-control country" required  name="customer" id="customer">
+                                        <option value="">Select ..</option>
+                                        @foreach($customers as $v)
+                                        <option value="{{$v->id}}">{{$v->nama}}&nbsp|&nbsp no: {{$v->no_meteran}}&nbsp|&nbsp id: {{$v->id_pelanggan}}&nbsp
+                                            |&nbsp&nbsp&nbspbatas daya : {{$v->batas_daya}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-primary float-right" id="tambah" href="/customer">Tambah Customer</a>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="provider">Provider</label>
-                                    <select class="select2 form-control country" required data-validation-required-message="Country Wajib diisi" name="provider" id="provider">
-                                        <option value="">Select Provider</option>
-                                        @foreach($providers as $v)
-                                        <option value="{{$v->id}}">{{$v->nama_provider}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="no_telp">Masukkan Informasi!</label>
+                                    <input type="text" id="informasi" class="form-control required" name="informasi" required>
                                 </div>
                             </div>
                         </div>
                         <h5 class="text-dark font-weight-bold display-5">Transaksi Terakhir</h5><br>
                         <div class="row">
                             @foreach ($last_transaction as $each)
-                            <div class="col-lg-4">
+                            <div class="col-sm-4">
                                 <label class="option bg-secondary">
                                     <span class="option-label">
                                         <span class="option-head">
                                         <span class="option-title">
-                                            {{ $each->nomor_hp }}
+                                            {{ $each->nama }}
                                         </span>
                                         <span class="option-focus">
-                                            {{$each->nama_provider}}
+                                            {{$each->batas_daya}}
+
                                         </span>
                                         </span>
                                         <span class="option-body">
-                                            Rp {{$each->nominal }}
+                                            Rp {{number_format($each->price, 0) }} &nbsp| id:  {{$each->id_pelanggan}}
                                         </span>
                                     </span>
                                 </label>
@@ -64,21 +70,21 @@
 
                         </div>
                         <hr>
-                        <h5 class="text-dark font-weight-bold display-5">Pilih Pulsa</h5><br>
+                        <h5 class="text-dark font-weight-bold display-5">Pilih Paket PLN</h5><br>
                         <div class="row">
-                            @foreach ($pulsa_nominal as $each)
+                            @foreach ($paket_pln as $each)
                             <div class="col-lg-4">
                                 <label class="option" id="badge">
                                     <span class="option-control">
                                         <span class="radio radio-bold radio-brand"></span>
-                                        <input type="radio" name="nominal" value="{{ $each->id }}" required/>
+                                        <input type="radio" name="paket" value="{{ $each->id }}" required/>
                                         <span></span>
                                         </span>
                                     </span>
                                     <span class="option-label">
                                         <span class="option-head">
                                         <span class="option-title">
-                                            {{ number_format($each->nominal) }}
+                                            {{ $each->paket_pln }}
                                         </span>
                                         {{-- <span class="option-focus">
                                         Free
@@ -97,7 +103,14 @@
                     </div>
 
                     <div class="card-footer">
-                    <button type="submit" id="btn_purchase" class="btn btn-success mr-2 float-right">Beli Sekarang!</button>
+                        <div class="container">
+                            <div class="d-none d-lg-flex align-items-center">
+                                <div class="topbar-item">
+                                    <button type="submit" id="btn_purchase" class="btn btn-success mr-2 float-right">Beli Sekarang!</button>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -119,16 +132,16 @@
                     }
                 });
                 Swal.fire({
-                    title: "Apakah Kamu yakin Untuk Mengisi Ulang Pulsa?",
+                    title: "Apakah Kamu yakin Untuk Meembeli Paket PLN?",
                     text: "",
                     icon: "question",
                     showCancelButton: true,
-                    confirmButtonText: "Yes, Isi Ulang Sekarang"
+                    confirmButtonText: "Yes, Beli Sekarang!"
                 }).then(function(result) {
                     if (result.value) {
                         $.ajax({ //line 28
                             type: 'POST',
-                            url: '/pulsa_post',
+                            url: '/pln-post',
                             dataType: 'json',
                             data: new FormData($("#form_purchase")[0]),
                             processData: false,

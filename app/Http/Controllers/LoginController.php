@@ -11,6 +11,10 @@ use App\Model\UserModel;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+    }
     /*
     |--------------------------------------------------------------------------
     | Login Controller

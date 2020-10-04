@@ -15,7 +15,7 @@ class CreateTablePulsa extends Migration
     {
         Schema::create('table_pulsa', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor_hp')->length(15);
+            $table->string('nomor_hp');
             $table->integer('id_nominal');
             $table->integer('id_provider');
             $table->integer('price');

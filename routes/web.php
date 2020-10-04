@@ -22,5 +22,20 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 //Dashboard
 Route::get('/', 'DashboardController@index')->middleware('auth:web');
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth:web');
+
 Route::get('/pulsa', 'PulsaController@index')->middleware('auth:web');
 Route::post('/pulsa_post', 'PulsaController@post')->middleware('auth:web')->name('pulsa');
+
+
+Route::get('/paket-data', 'PaketDataController@index')->middleware('auth:web');
+Route::post('/paket-data-post', 'PaketDataController@post')->middleware('auth:web')->name('pulsa');
+
+Route::get('/pln', 'PlnController@index')->middleware('auth:web');
+Route::post('/pln-post', 'PlnController@post')->middleware('auth:web')->name('pulsa');
+
+
+Route::get('/pln', 'PlnController@index')->middleware('auth:web');
+Route::get('/customer', 'PlnController@customer')->middleware('auth:web');
+Route::get('/data_customer', 'PlnController@data_customer')->middleware('auth:web');
+Route::post('/pln-post', 'PlnController@post')->middleware('auth:web')->name('pulsa');

@@ -15,8 +15,8 @@ class CreateTableNominalPln extends Migration
     {
         Schema::create('table_nominal_pln', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pelanggan');
-            $table->integer('nomor_meter');
+            $table->string('paket_pln');
+            $table->integer('fixed_price');
             $table->integer('daya');
             $table->timestamps();
         });

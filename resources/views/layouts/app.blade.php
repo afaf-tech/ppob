@@ -30,11 +30,14 @@
 	<body id="kt_body" class="header-fixed header-mobile-fixed page-loading">
 		<!--begin::Main-->
 		<!--begin::Header Mobile-->
-		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
+		<div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed" style="background: #e6e040">
 			<!--begin::Logo-->
 			<a href="/">
-				<img alt="Logo" src="{{URL::asset('images')}}/logo.png" class="max-h-30px" />
-			</a>
+				<img alt="Logo" src="{{URL::asset('images')}}/logo.png" class="max-h-100px" />
+            </a>
+            <div>
+            <h3 class="text-white w-auto d-flex align-items-center"> Saldo Anda : RP.{{number_format($user->saldo,2,',','.')}}</h3>
+            </div>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
 			<div class="d-flex align-items-center">
@@ -43,7 +46,6 @@
 				</button>
 				<button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:{{URL::asset('assets')}}/media/svg/icons/General/User.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -69,22 +71,22 @@
 						<div class="header-top" style="background: #e6e040">
 							<!--begin::Container-->
 							<div class="container">
-								<!--begin::Left-->
 								<div class="d-none d-lg-flex align-items-center mr-3">
-									<!--begin::Logo-->
 									<a href="/" class="mr-20">
-										<img alt="Logo" src="{{URL::asset('images')}}/logo.png" class="max-h-50px" />
+										<img alt="Logo" src="{{URL::asset('images')}}/logo.png" class="max-h-130px" />
 									</a>
-
 								</div>
-								<!--end::Left-->
-								<!--begin::Topbar-->
-								<div class="topbar">
-									<!--begin::User-->
-									<div class="topbar-item">
+								<div class="d-none d-lg-flex align-items-center mr-3">
+                                    <div class="topbar-item">
                                         <h3 class="text-white w-auto d-flex align-items-center"> Saldo Anda : RP.{{number_format($user->saldo,2,',','.')}}</h3>
                                         <span></span>
 									</div>
+                                </div>
+
+								<!--begin::Topbar-->
+								<div class="topbar">
+									<!--begin::User-->
+
 									<div class="topbar-item">
 										<div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
 											<div class="d-flex flex-column text-right pr-3">
@@ -115,13 +117,19 @@
 										<ul class="menu-nav">
 
 											<li class="menu-item menu-item-submenu menu-item-rel" >
-												<a href="/pulsa" class="menu-link">
+                                                <div class="symbol">
+                                                    <img alt="Pic" src="{{URL::asset('images')}}/pulsa.png"/>
+                                                </div>
+                                                <a href="/pulsa" class="menu-link">
 													<span class="menu-text">Pulsa</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
 												</a>
 
 											</li>
 											<li class="menu-item menu-item-submenu menu-item-rel" >
+                                                <div class="symbol">
+                                                    <img alt="Pic" src="{{URL::asset('images')}}/paket-data.jpg"/>
+                                                </div>
 												<a href="/paket-data" class="menu-link">
 													<span class="menu-text">Paket Data</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
@@ -129,6 +137,9 @@
 
 											</li>
 											<li class="menu-item menu-item-submenu menu-item-rel" >
+                                                <div class="symbol">
+                                                    <img alt="Pic" src="{{URL::asset('images')}}/pln.png"/>
+                                                </div>
 												<a href="/pln" class="menu-link">
 													<span class="menu-text">PLN PRABAYAR</span>
 													<!-- <span class="menu-desc">Components &amp; Elements</span> -->
@@ -205,7 +216,7 @@
 				<!--begin::Header-->
 				<div class="d-flex align-items-center mt-5">
 					<div class="symbol symbol-100 mr-5">
-						<div class="symbol-label" style="background-image:url('{{URL::asset('images')}}/user.jpg')')"></div>
+						<div class="symbol-label" style="background-image:url('{{URL::asset('images')}}/user.jpg')"></div>
 						<i class="symbol-badge bg-success"></i>
 					</div>
 					<div class="d-flex flex-column">
