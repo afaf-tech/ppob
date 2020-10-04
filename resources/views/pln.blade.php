@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a class="btn btn-primary float-right" id="tambah" href="/customer">Tambah Customer</a>
+                                <a class="btn btn-primary float-right"  href="/customer">Tambah Customer</a>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -117,6 +117,7 @@
 
         </div>
     </div>
+    <div class="row"></div>
 
 
 @endsection

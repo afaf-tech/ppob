@@ -32,11 +32,9 @@ class PaketDataController extends Controller
     }
 
     public function post(Request $request){
-        // dd($request);
         DB::beginTransaction();
         try {
             $harga_paket = DB::table('table_nominal_data')->where('id', $request->jenis_paket)->first()->fixed_price;
-            dd($harga_paket);
             $insertPulsa = [
                 "nomor_hp"              => $request->phone_number,
                 "id_paket_data"            => $request->jenis_paket,

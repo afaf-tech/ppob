@@ -4,10 +4,8 @@
 @endsection
 @section('title', 'Customer')
 @section('content')
-<div class="form_edit" id="show_edit">
-</div>
 <div class="row" id="show_add" style="display: none;">
-    <div class="col-lg-12 col-xxl-4">
+    <div class="col-xl-12">
         <section class="multiple-validation">
             <div class="card mb-3">
                 <div class="card-content">
@@ -16,30 +14,26 @@
                             <div class="row mb-5">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>category_product_name</label>
-                                        <input type="text" class="form-control required" name="category_product_name"  required/>
+                                        <label>Nama Customer</label>
+                                        <input type="text" class="form-control required" name="name"  required/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="lastName3">
-                                           Image
-                                        </label>
-                                        <div class="controls">
-                                            <input type="file" class="form-control" name="image" id="inputfoto" onchange="readURL(this);">
-
-                                            <img id="blah" src="#" style="max-width: 200px;max-height: 200px;display: none" />
-
-                                        </div>
+                                        <label>No Meteran</label>
+                                        <input type="number" class="form-control required" name="meteran"  required/>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="deskripsi" class="label_input">Deskripsi</label>
-                                        <fieldset class="form-label-group mb-0">
-                                            <textarea data-length="2000" class="form-control char-textarea active summernote" id="description" rows="3" placeholder="Deskripsi" style="color: rgb(78, 81, 84);" name="description"></textarea>
-                                        </fieldset>
-                                        <input type="hidden" name="deskripsi" value="" id="isi_deskripsi">
+                                        <label>ID Pelanggan</label>
+                                        <input type="number" class="form-control required" name="id_pelanggan"  required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Batas Daya</label>
+                                        <input type="text" class="form-control required" name="daya"  required/>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +51,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12 col-xxl-4">
+    <div class="col-xl-12">
         <!--begin::List Widget 9-->
         <div class="card card-custom card-stretch gutter-b">
             <!--begin::Header-->
@@ -101,6 +95,7 @@
             <!--end: Card Body-->
         </div>
     </div>
+</div>
 @endsection
 @section('js')
     <!-- scipt js -->
@@ -111,12 +106,8 @@
     <script src="{{URL::asset('assets')}}/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
     <script src="{{URL::asset('assets')}}/js/scripts/datatables/datatable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="{{URL::asset('assets')}}/js/anypicker.min.js"></script>
     <script src="{{URL::asset('assets')}}/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="{{URL::asset('assets')}}/js/scripts/forms/select/form-select2.js"></script>
-    <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    <!-- end -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
     <script type="text/javascript">
@@ -135,11 +126,9 @@
 
         $("#form_add").validate({
             submitHandler: function(form) {
-                var description = CKEDITOR.instances.description.getData();
-                $("#isi_deskripsi").val(description);
                 $.ajax({ //line 28
                     type: 'POST',
-                    url: '/postcatproduct',
+                    url: '/post_customer',
                     dataType: 'json',
                     data: new FormData($("#form_add")[0]),
                     processData: false,
@@ -186,8 +175,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            var description = CKEDITOR.instances.edit_description.getData();
-            $("#isi_deskripsi2").val(description);
             $.ajax({ //line 28
                 type: 'POST',
                 url: '/update/category_product',

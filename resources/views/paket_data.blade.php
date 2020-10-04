@@ -111,7 +111,7 @@
                     }
                 });
                 Swal.fire({
-                    title: "Apakah Kamu yakin Untuk Membeli PLN Prabayar?",
+                    title: "Apakah Kamu yakin Untuk Membeli Paket Data?",
                     text: "",
                     icon: "question",
                     showCancelButton: true,
@@ -120,7 +120,7 @@
                     if (result.value) {
                         $.ajax({ //line 28
                             type: 'POST',
-                            url: '/pln-post',
+                            url: '/paket-data-post',
                             dataType: 'json',
                             data: new FormData($("#form_purchase")[0]),
                             processData: false,

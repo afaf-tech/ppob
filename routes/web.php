@@ -38,4 +38,11 @@ Route::post('/pln-post', 'PlnController@post')->middleware('auth:web')->name('pu
 Route::get('/pln', 'PlnController@index')->middleware('auth:web');
 Route::get('/customer', 'PlnController@customer')->middleware('auth:web');
 Route::get('/data_customer', 'PlnController@data_customer')->middleware('auth:web');
+Route::post('/post_customer', 'PlnController@post_customer')->middleware('auth:web');
 Route::post('/pln-post', 'PlnController@post')->middleware('auth:web')->name('pulsa');
+
+
+Route::get('/ges', function(){
+    return Hash::make('user123');
+})->middleware('auth:web');
+
