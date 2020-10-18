@@ -1,6 +1,6 @@
 # PPOB - Laravel
 
-This project was inspired by bit.ly url-shortner functionality, this platform created using Node Js, and Mongodb (Document database), Ejs as a template engine. This project was made for 3 hours. You can shorten your long url with this and feel free to clone and contribute.
+This project was inspired by mitrabukalapak, this platform created using Laravel Framework, and Mysql (Relational database), blade as a template engine. This project was made for 24 hours. You can do some transaction with this and feel free to clone and contribute.
 
 **Technology :**
 * BackEnd
